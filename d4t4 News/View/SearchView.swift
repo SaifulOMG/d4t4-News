@@ -9,13 +9,25 @@ import SwiftUI
 
 struct SearchView: View {
     @State private var searchText = ""
+    @StateObject private var newsViewModel = NewsViewModel()
     
     var body: some View {
-        HStack {
-            SearchBar(searchText: $searchText, action: {
-                
-            })
+        
+        ZStack {
+            VStack {
+                Text("News API")
+                SearchBar(searchText: $searchText, action: {
+                    newsViewModel.fetchNews(for: searchText)
+                })
+                Spacer()
+            }
+            
+            if newsViewModel.isLoading == true {
+                ProgressView("Loading...")
+                    .progressViewStyle(.circular)
+            }
         }
+        
     }
 }
 

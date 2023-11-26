@@ -22,7 +22,7 @@ class NewsViewModel: ObservableObject {
         Task {
             do {
                 let fetchedArticles = try await newsSearchRequest.searchNews(searchPath: searchPath)
-
+//                print(fetchedArticles)
                 if fetchedArticles.status == NewsApiStatus.error.identifier {
                     guard let message = fetchedArticles.message else {
                         return
@@ -30,10 +30,14 @@ class NewsViewModel: ObservableObject {
                     print(message)
                     self.errorMessage = message
                 } else {
-                    print("Success")
+                    guard let totalArticles = fetchedArticles.totalResults else {
+                        return
+                    }
+                    print("Success with \(totalArticles) news articles")
                 }
                 
                 self.articles = fetchedArticles.articles ?? []
+
                 self.isLoading = false
             } catch {
                 self.errorMessage = error.localizedDescription

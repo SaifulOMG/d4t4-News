@@ -21,7 +21,7 @@ class NetworkRequest {
         do {
             let apiKey = try Security().getApiKeyToKeychain()
             
-            guard let url = URL(string: "\(InfoPlistParser.getStringValue(forKey: "API URL"))?q=\(searchPath)&apiKey=" + apiKey) else {
+            guard let url = URL(string: "\(InfoPlistParser.getStringValue(forKey: "API URL"))q=\(searchPath)&apiKey=" + apiKey) else {
                 throw NetworkError.badURL
             }
             

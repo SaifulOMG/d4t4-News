@@ -3,6 +3,6 @@
 <plist version="1.0">
 <dict>
 	<key>API URL</key>
-	<string>710119f4520a4c25b4ab12e46322e7db</string>
+	<string>https://newsapi.org/v2/everything?</string>
 </dict>
 </plist>
