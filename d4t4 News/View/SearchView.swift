@@ -29,7 +29,7 @@ struct SearchView: View {
                     RoundedRectangle(cornerRadius: 5)
                         .fill(.white)
                         .overlay(content: {
-                            TableView(items: $newsViewModel.articles, selectedItem: $selectedArticle)
+                            TableView(items: $newsViewModel.articles, viewModel: newsViewModel, selectedItem: $selectedArticle)
                                 .padding([.trailing, .top, .bottom], 4)
                         })
                         .padding([.leading, .trailing, .top, .bottom])

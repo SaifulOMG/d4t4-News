@@ -12,6 +12,7 @@ struct TableView: UIViewControllerRepresentable {
     typealias UIViewControllerType = UITableViewController
 
     @Binding var items: [ArticleDetail]
+    var viewModel: NewsViewModel
     @Binding var selectedItem: ArticleDetail?
 
     func makeUIViewController(context: Context) -> UITableViewController {
@@ -27,11 +28,11 @@ struct TableView: UIViewControllerRepresentable {
         uiViewController.tableView.reloadData()
     }
 
-    func makeCoordinator() -> Coordinator {
-        Coordinator(self)
+    func makeCoordinator() -> TableViewController {
+        TableViewController(self)
     }
 
-    class Coordinator: NSObject, UITableViewDelegate, UITableViewDataSource {
+    class TableViewController: NSObject, UITableViewDelegate, UITableViewDataSource, CustomTableViewCellDelegate {
         var parent: TableView
         var items: [ArticleDetail] = []
 
@@ -45,9 +46,14 @@ struct TableView: UIViewControllerRepresentable {
 
         func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
             let cell = tableView.dequeueReusableCell(withIdentifier: "CustomCell", for: indexPath) as! CustomTableViewCell
+            cell.delegate = self
             cell.configure(with: items[indexPath.row])
             return cell
         }
 
+        // Delegate method
+        func didTapSpeechButton(withText text: String) {
+            parent.viewModel.speakText(text)
+        }
     }
 }

@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 
 class CustomTableViewCell: UITableViewCell {
+    weak var delegate: CustomTableViewCellDelegate?
     let speechButton = UIButton(type: .system)
     let viewArticleButton = UIButton(type: .system)
     let titleLabel = UILabel()
@@ -27,9 +28,11 @@ class CustomTableViewCell: UITableViewCell {
         viewArticleButton.setTitle("View", for: .normal)
         titleLabel.numberOfLines = 5
         
-        // Customize button appearance
+        // Button appearance
         configureButton(speechButton, backgroundColor: .systemBlue, titleColor: .white)
         configureButton(viewArticleButton, backgroundColor: .systemIndigo, titleColor: .white)
+        
+        speechButton.addTarget(self, action: #selector(speakTitle), for: .touchUpInside)
         
         // Layout
         let buttonsStackView = UIStackView(arrangedSubviews: [speechButton, viewArticleButton])
@@ -52,20 +55,25 @@ class CustomTableViewCell: UITableViewCell {
             horizontalStackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
             horizontalStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10),
 
-            buttonsStackView.widthAnchor.constraint(equalToConstant: 100) // Adjust width as needed
+            buttonsStackView.widthAnchor.constraint(equalToConstant: 100)
         ])
     }
     
     private func configureButton(_ button: UIButton, backgroundColor: UIColor, titleColor: UIColor) {
         button.backgroundColor = backgroundColor
         button.setTitleColor(titleColor, for: .normal)
-        button.layer.cornerRadius = 5 // Adjust the corner radius as needed
+        button.layer.cornerRadius = 5
         button.clipsToBounds = true
-        button.heightAnchor.constraint(equalToConstant: 35).isActive = true // Set height to match SearchView
+        button.heightAnchor.constraint(equalToConstant: 35).isActive = true
+    }
+    
+    @objc private func speakTitle() {
+        if let title = titleLabel.text {
+            delegate?.didTapSpeechButton(withText: title)
+        }
     }
     
     func configure(with article: ArticleDetail) {
         titleLabel.text = article.title
-        // Configure any additional data for the cell
     }
 }

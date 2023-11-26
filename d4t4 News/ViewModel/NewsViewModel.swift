@@ -9,6 +9,7 @@ import Foundation
 
 @MainActor
 class NewsViewModel: ObservableObject {
+    private let speechSynthesisService = SpeechSynthesisService()
     @Published var articles: [ArticleDetail] = []
     @Published var isLoading: Bool = false
     @Published var errorMessage: String?
@@ -44,5 +45,9 @@ class NewsViewModel: ObservableObject {
                 self.isLoading = false
             }
         }
+    }
+    
+    func speakText(_ text: String) {
+        speechSynthesisService.speak(text: text)
     }
 }
