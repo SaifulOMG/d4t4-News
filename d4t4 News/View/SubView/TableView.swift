@@ -16,6 +16,7 @@ struct TableView: UIViewControllerRepresentable {
 
     func makeUIViewController(context: Context) -> UITableViewController {
         let tableViewController = UITableViewController()
+        tableViewController.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
         tableViewController.tableView.delegate = context.coordinator
         tableViewController.tableView.dataSource = context.coordinator
         return tableViewController

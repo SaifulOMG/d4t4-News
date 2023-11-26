@@ -10,6 +10,7 @@ import SwiftUI
 struct SearchView: View {
     @State private var searchText = ""
     @StateObject private var newsViewModel = NewsViewModel()
+    @State private var selectedArticle: ArticleDetail?
     
     var body: some View {
         
@@ -19,7 +20,15 @@ struct SearchView: View {
                 SearchBar(searchText: $searchText, action: {
                     newsViewModel.fetchNews(for: searchText)
                 })
-                Spacer()
+                
+                if newsViewModel.isLoading == false && newsViewModel.articles.count != 0 {
+                    TableView(items: $newsViewModel.articles, selectedItem: $selectedArticle)
+                        .padding([.trailing, .top, .bottom])
+                } else {
+                    RoundedRectangle(cornerRadius: 5)
+                        .stroke(.black, lineWidth: 0.10)
+                        .padding([.leading, .trailing, .top, .bottom], 15)
+                }
             }
             
             if newsViewModel.isLoading == true {
@@ -31,6 +40,16 @@ struct SearchView: View {
     }
 }
 
-#Preview {
-    SearchView()
+struct SearchView_Previews: PreviewProvider {
+    static var previews: some View {
+        SearchView()
+       //     .environmentObject(mockNewsViewModel())
+    }
+
+//    static func mockNewsViewModel() -> NewsViewModel {
+//        let viewModel = NewsViewModel()
+//        viewModel.articles = [ArticleDetail(title: "Sample News", author: "Test")] 
+//        return viewModel
+//    }
 }
+

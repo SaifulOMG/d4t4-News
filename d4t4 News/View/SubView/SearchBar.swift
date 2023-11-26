@@ -29,7 +29,7 @@ struct SearchBar: View {
                 )
 
             Button(action: action) {
-                Text("Go")
+                Text("Find")
                     .foregroundColor(.white)
                     .padding(.vertical, 8)
                     .padding(.horizontal, 16)

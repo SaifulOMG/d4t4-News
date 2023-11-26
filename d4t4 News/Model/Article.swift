@@ -19,8 +19,8 @@ struct ArticleDetail: Codable {
     var title: String?
     var author: String?
     var source: Source?
-    var publishedAt: String
-    var url: String
+    var publishedAt: String?
+    var url: String?
 }
 
 struct Source: Codable {
