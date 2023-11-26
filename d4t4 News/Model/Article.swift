@@ -10,7 +10,9 @@ import Foundation
 struct Articles: Codable {
     var status: String?
     var total: Int?
-    var articles: ArticleDetail?
+    var articles: [ArticleDetail]?
+    var code: String?
+    var message: String?
 }
 
 struct ArticleDetail: Codable {

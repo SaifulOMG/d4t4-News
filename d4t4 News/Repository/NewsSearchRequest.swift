@@ -8,6 +8,7 @@
 import Foundation
 
 class NewsSearchRequest {
+
     func searchNews(searchPath: String) async throws -> Articles {
         do {
             let data = try await NetworkRequest().getData(searchPath: searchPath, expectedReturnType: Articles.self)
