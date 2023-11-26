@@ -34,7 +34,7 @@ struct SearchBar: View {
                     .padding(.vertical, 8)
                     .padding(.horizontal, 16)
                     .frame(height: 35)
-                    .background(Color.blue)
+                    .background(Color.indigo)
                     .cornerRadius(5)
             }
             .padding(.trailing)

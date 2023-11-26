@@ -28,6 +28,7 @@
 		31AF1B7E2B12F0850093FFE8 /* NewsApiStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31AF1B7D2B12F0850093FFE8 /* NewsApiStatus.swift */; };
 		31AF1B832B1300380093FFE8 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31AF1B822B1300380093FFE8 /* SearchBar.swift */; };
 		31AF1B852B130DC20093FFE8 /* TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31AF1B842B130DC20093FFE8 /* TableView.swift */; };
+		31AF1B872B139D250093FFE8 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31AF1B862B139D250093FFE8 /* TableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +69,7 @@
 		31AF1B7D2B12F0850093FFE8 /* NewsApiStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsApiStatus.swift; sourceTree = "<group>"; };
 		31AF1B822B1300380093FFE8 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		31AF1B842B130DC20093FFE8 /* TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableView.swift; sourceTree = "<group>"; };
+		31AF1B862B139D250093FFE8 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -213,6 +215,7 @@
 			children = (
 				31AF1B822B1300380093FFE8 /* SearchBar.swift */,
 				31AF1B842B130DC20093FFE8 /* TableView.swift */,
+				31AF1B862B139D250093FFE8 /* TableViewCell.swift */,
 			);
 			path = SubView;
 			sourceTree = "<group>";
@@ -357,6 +360,7 @@
 				31AF1B652B12C2470093FFE8 /* NewsSearchRequest.swift in Sources */,
 				31AF1B832B1300380093FFE8 /* SearchBar.swift in Sources */,
 				31AF1B612B12B5E00093FFE8 /* Security.swift in Sources */,
+				31AF1B872B139D250093FFE8 /* TableViewCell.swift in Sources */,
 				31AF1B852B130DC20093FFE8 /* TableView.swift in Sources */,
 				31AF1B572B1271120093FFE8 /* Article.swift in Sources */,
 			);

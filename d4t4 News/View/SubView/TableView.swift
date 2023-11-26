@@ -16,7 +16,7 @@ struct TableView: UIViewControllerRepresentable {
 
     func makeUIViewController(context: Context) -> UITableViewController {
         let tableViewController = UITableViewController()
-        tableViewController.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
+        tableViewController.tableView.register(CustomTableViewCell.self, forCellReuseIdentifier: "CustomCell")
         tableViewController.tableView.delegate = context.coordinator
         tableViewController.tableView.dataSource = context.coordinator
         return tableViewController
@@ -44,8 +44,8 @@ struct TableView: UIViewControllerRepresentable {
         }
 
         func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-            cell.textLabel?.text = items[indexPath.row].title
+            let cell = tableView.dequeueReusableCell(withIdentifier: "CustomCell", for: indexPath) as! CustomTableViewCell
+            cell.configure(with: items[indexPath.row])
             return cell
         }
 

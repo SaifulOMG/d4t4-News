@@ -15,18 +15,27 @@ struct SearchView: View {
     var body: some View {
         
         ZStack {
+            Color.blue.ignoresSafeArea()
+            
             VStack {
                 Text("News API")
+                    .foregroundStyle(.white)
+                    .font(.system(size: 24))
                 SearchBar(searchText: $searchText, action: {
                     newsViewModel.fetchNews(for: searchText)
                 })
                 
                 if newsViewModel.isLoading == false && newsViewModel.articles.count != 0 {
-                    TableView(items: $newsViewModel.articles, selectedItem: $selectedArticle)
-                        .padding([.trailing, .top, .bottom])
+                    RoundedRectangle(cornerRadius: 5)
+                        .fill(.white)
+                        .overlay(content: {
+                            TableView(items: $newsViewModel.articles, selectedItem: $selectedArticle)
+                                .padding([.trailing, .top, .bottom], 4)
+                        })
+                        .padding([.leading, .trailing, .top, .bottom])
                 } else {
                     RoundedRectangle(cornerRadius: 5)
-                        .stroke(.black, lineWidth: 0.10)
+                        .fill(.white)
                         .padding([.leading, .trailing, .top, .bottom], 15)
                 }
             }
@@ -43,13 +52,6 @@ struct SearchView: View {
 struct SearchView_Previews: PreviewProvider {
     static var previews: some View {
         SearchView()
-       //     .environmentObject(mockNewsViewModel())
     }
-
-//    static func mockNewsViewModel() -> NewsViewModel {
-//        let viewModel = NewsViewModel()
-//        viewModel.articles = [ArticleDetail(title: "Sample News", author: "Test")] 
-//        return viewModel
-//    }
 }
 
