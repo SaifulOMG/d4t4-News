@@ -27,6 +27,10 @@ class CustomTableViewCell: UITableViewCell {
         viewArticleButton.setTitle("View", for: .normal)
         titleLabel.numberOfLines = 5
         
+        // Customize button appearance
+        configureButton(speechButton, backgroundColor: .systemBlue, titleColor: .white)
+        configureButton(viewArticleButton, backgroundColor: .systemIndigo, titleColor: .white)
+        
         // Layout
         let buttonsStackView = UIStackView(arrangedSubviews: [speechButton, viewArticleButton])
         buttonsStackView.axis = .vertical
@@ -48,8 +52,16 @@ class CustomTableViewCell: UITableViewCell {
             horizontalStackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
             horizontalStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10),
 
-            buttonsStackView.widthAnchor.constraint(equalToConstant: 100)
+            buttonsStackView.widthAnchor.constraint(equalToConstant: 100) // Adjust width as needed
         ])
+    }
+    
+    private func configureButton(_ button: UIButton, backgroundColor: UIColor, titleColor: UIColor) {
+        button.backgroundColor = backgroundColor
+        button.setTitleColor(titleColor, for: .normal)
+        button.layer.cornerRadius = 5 // Adjust the corner radius as needed
+        button.clipsToBounds = true
+        button.heightAnchor.constraint(equalToConstant: 35).isActive = true // Set height to match SearchView
     }
     
     func configure(with article: ArticleDetail) {

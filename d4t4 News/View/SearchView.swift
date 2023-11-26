@@ -43,6 +43,9 @@ struct SearchView: View {
             if newsViewModel.isLoading == true {
                 ProgressView("Loading...")
                     .progressViewStyle(.circular)
+                    .scaleEffect(1.5)
+                    .tint(.blue)
+                    .foregroundStyle(.blue)
             }
         }
         

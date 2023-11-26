@@ -49,8 +49,5 @@ struct TableView: UIViewControllerRepresentable {
             return cell
         }
 
-        func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-            parent.selectedItem = items[indexPath.row]
-        }
     }
 }
