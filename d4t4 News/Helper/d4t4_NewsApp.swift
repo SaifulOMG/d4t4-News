@@ -9,9 +9,17 @@ import SwiftUI
 
 @main
 struct d4t4_NewsApp: App {
+    init() {
+        do {
+            try Security().saveApiKeyToKeychain()
+        } catch {
+            print("Failed to save API key: \(error)")
+        }
+    }
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            SearchView()
         }
     }
 }
