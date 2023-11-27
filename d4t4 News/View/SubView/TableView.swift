@@ -17,6 +17,8 @@ struct TableView: UIViewControllerRepresentable {
         tableViewController.tableView.register(CustomTableViewCell.self, forCellReuseIdentifier: "CustomCell")
         tableViewController.tableView.delegate = context.coordinator
         tableViewController.tableView.dataSource = context.coordinator
+        tableViewController.tableView.backgroundColor = .white
+        tableViewController.view.backgroundColor = .white
         return tableViewController
     }
 

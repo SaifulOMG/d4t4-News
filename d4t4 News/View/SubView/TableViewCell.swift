@@ -12,10 +12,12 @@ class CustomTableViewCell: UITableViewCell {
     let speechButton = UIButton(type: .system)
     let viewArticleButton = UIButton(type: .system)
     let titleLabel = UILabel()
+    let dateLabel = UILabel()
     private var articleURL: String?
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        self.backgroundColor = .white
         setupLayout()
     }
 
@@ -25,9 +27,17 @@ class CustomTableViewCell: UITableViewCell {
 
     private func setupLayout() {
    
-        titleLabel.numberOfLines = 5 
+        // DateLabel
+        dateLabel.numberOfLines = 1
+        dateLabel.font = UIFont.systemFont(ofSize: 14)
+        dateLabel.textColor = .gray
+        dateLabel.translatesAutoresizingMaskIntoConstraints = false
+        contentView.addSubview(dateLabel)
+        
+        titleLabel.numberOfLines = 0
         
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        titleLabel.textColor = .black
         contentView.addSubview(titleLabel)
 
         // SpeechButton
@@ -50,9 +60,13 @@ class CustomTableViewCell: UITableViewCell {
 
         // Layout for cell
         NSLayoutConstraint.activate([
+            dateLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
+            dateLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
+            dateLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
+
             titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
             titleLabel.trailingAnchor.constraint(equalTo: buttonsStackView.leadingAnchor, constant: -10),
-            titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
+            titleLabel.topAnchor.constraint(equalTo: dateLabel.bottomAnchor, constant: 5),
             titleLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10),
             
             buttonsStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
@@ -72,6 +86,9 @@ class CustomTableViewCell: UITableViewCell {
     }
 
     func configure(with article: ArticleDetail) {
+        if let publishedAt = article.publishedAt {
+            dateLabel.text = formatDateString(publishedAt)
+        }
         titleLabel.text = article.title
         articleURL = article.url
     }
@@ -87,4 +104,18 @@ class CustomTableViewCell: UITableViewCell {
             delegate?.didTapViewButton(withURL: url)
         }
     }
+    
+    private func formatDateString(_ dateString: String) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ" 
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+        
+        if let date = dateFormatter.date(from: dateString) {
+            dateFormatter.dateFormat = "yyyy-MM-dd"
+            return dateFormatter.string(from: date)
+        } else {
+            return dateString
+        }
+    }
+
 }

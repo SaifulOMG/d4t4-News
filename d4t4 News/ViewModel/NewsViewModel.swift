@@ -16,14 +16,14 @@ class NewsViewModel: ObservableObject {
     @Published var selectedItemURL: String?
     private let newsSearchRequest = NewsSearchRequest()
 
-    func fetchNews(for searchPath: String) {
+    func fetchNews(for searchPath: String, fromDate: Date, toDate: Date) {
         isLoading = true
         errorMessage = nil
 
         //checking for errors when fetching. API may return errors
         Task {
             do {
-                let fetchedArticles = try await newsSearchRequest.searchNews(searchPath: searchPath)
+                let fetchedArticles = try await newsSearchRequest.searchNews(searchPath: searchPath, fromDate: fromDate, toDate: toDate)
 
                 if fetchedArticles.status == NewsApiStatus.error.identifier {
                     guard let message = fetchedArticles.message else {

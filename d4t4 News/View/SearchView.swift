@@ -11,6 +11,8 @@ struct SearchView: View {
     @EnvironmentObject var newsViewModel: NewsViewModel
     @State private var searchText = ""
     @Binding var navPaths: [Routes]
+    @State private var fromDate = Date()
+    @State private var toDate = Date()
     var body: some View {
         ZStack {
             Color.blue.ignoresSafeArea()
@@ -20,8 +22,10 @@ struct SearchView: View {
                     .foregroundStyle(.white)
                     .font(.system(size: 24))
                 
-                SearchBar(searchText: $searchText, action: {
-                    newsViewModel.fetchNews(for: searchText)
+                
+                SearchBar(searchText: $searchText, fromDate: $fromDate, toDate: $toDate, action: {
+                    //fetch using search input and date. Default date if not chosen will be today current date
+                    newsViewModel.fetchNews(for: searchText, fromDate: fromDate, toDate: toDate)
                 })
                 
                 if !newsViewModel.isLoading && !newsViewModel.articles.isEmpty {

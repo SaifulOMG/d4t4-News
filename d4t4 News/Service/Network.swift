@@ -17,11 +17,14 @@ enum NetworkError: Error {
 
 class NetworkRequest {
     //Get Request
-    func getData<T: Codable>(searchPath: String, expectedReturnType: T.Type) async throws -> T {
+    func getData<T: Codable>(searchPath: String, fromDate: String, toDate: String, expectedReturnType: T.Type) async throws -> T {
         do {
             let apiKey = try Security().getApiKeyToKeychain()
-            
-            guard let url = URL(string: "\(InfoPlistParser.getStringValue(forKey: "API URL"))q=\(searchPath)&apiKey=" + apiKey) else {
+            //q is restricted to title of user input
+            //use given date default is todays date
+            //language is english
+            //Example: https://newsapi.org/v2/everything?q=bitcoin&searchIn=title&from=2023-11-26&to=2023-11-26&language=en&apiKey=710119f4520a4c25b4ab12e46322e7db
+            guard let url = URL(string: "\(InfoPlistParser.getStringValue(forKey: "API URL"))q=\(searchPath)&searchIn=title&from=\(fromDate)&to=\(toDate)&language=en&apiKey=" + apiKey) else {
                 throw NetworkError.badURL
             }
             

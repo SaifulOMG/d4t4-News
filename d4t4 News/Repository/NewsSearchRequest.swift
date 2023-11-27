@@ -9,9 +9,18 @@ import Foundation
 
 class NewsSearchRequest {
     //data handling
-    func searchNews(searchPath: String) async throws -> Articles {
+    func searchNews(searchPath: String, fromDate: Date, toDate: Date) async throws -> Articles {
         do {
-            let data = try await NetworkRequest().getData(searchPath: searchPath, expectedReturnType: Articles.self)
+            let dateFormatter = DateFormatter() //format date before adding to endpoint
+            dateFormatter.dateFormat = "yyyy-MM-dd"
+            
+            let fromData = dateFormatter.string(from: fromDate)
+            let toDate = dateFormatter.string(from: toDate)
+            
+            print(fromData)
+            print(toDate)
+            
+            let data = try await NetworkRequest().getData(searchPath: searchPath, fromDate: fromData, toDate: toDate, expectedReturnType: Articles.self)
             return data
         } catch {
             print("Error getting News data")
