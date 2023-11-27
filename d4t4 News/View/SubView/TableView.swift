@@ -9,12 +9,9 @@ import SwiftUI
 import UIKit
 
 struct TableView: UIViewControllerRepresentable {
-    typealias UIViewControllerType = UITableViewController
-
-    @Binding var items: [ArticleDetail]
-    var viewModel: NewsViewModel
-    @Binding var selectedItem: ArticleDetail?
-
+    @EnvironmentObject var viewModel: NewsViewModel
+    var navigate: () -> ()
+    
     func makeUIViewController(context: Context) -> UITableViewController {
         let tableViewController = UITableViewController()
         tableViewController.tableView.register(CustomTableViewCell.self, forCellReuseIdentifier: "CustomCell")
@@ -24,36 +21,46 @@ struct TableView: UIViewControllerRepresentable {
     }
 
     func updateUIViewController(_ uiViewController: UITableViewController, context: Context) {
-        context.coordinator.items = items
+        context.coordinator.viewModel = viewModel
         uiViewController.tableView.reloadData()
     }
 
     func makeCoordinator() -> TableViewController {
-        TableViewController(self)
+        TableViewController(self, navigate: navigate)
     }
 
     class TableViewController: NSObject, UITableViewDelegate, UITableViewDataSource, CustomTableViewCellDelegate {
         var parent: TableView
-        var items: [ArticleDetail] = []
-
-        init(_ tableView: TableView) {
+        var viewModel: NewsViewModel
+        var navigate: () -> ()
+        
+        init(_ tableView: TableView, navigate: @escaping () -> (Void)) {
             self.parent = tableView
+            self.viewModel = tableView.viewModel
+            self.navigate = navigate
         }
 
         func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-            items.count
+            viewModel.articles.count
         }
 
         func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
             let cell = tableView.dequeueReusableCell(withIdentifier: "CustomCell", for: indexPath) as! CustomTableViewCell
             cell.delegate = self
-            cell.configure(with: items[indexPath.row])
+            cell.configure(with: viewModel.articles[indexPath.row])
             return cell
         }
 
-        // Delegate method
         func didTapSpeechButton(withText text: String) {
-            parent.viewModel.speakText(text)
+            viewModel.speakText(text)
+        }
+
+        func didTapViewButton(withURL url: String) {
+            viewModel.selectedItemURL = url
+            print(url)
+            navigate()
+            // If you need to save the entire ArticleDetail object instead:
+            // viewModel.selectedArticle = viewModel.articles.first { $0.url == url }
         }
     }
 }

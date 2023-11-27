@@ -9,4 +9,5 @@ import Foundation
 
 protocol CustomTableViewCellDelegate: AnyObject {
     func didTapSpeechButton(withText text: String)
+    func didTapViewButton(withURL url: String)
 }

@@ -19,7 +19,7 @@ struct d4t4_NewsApp: App {
     
     var body: some Scene {
         WindowGroup {
-            SearchView()
+            RouteManager().environmentObject(NewsViewModel())
         }
     }
 }

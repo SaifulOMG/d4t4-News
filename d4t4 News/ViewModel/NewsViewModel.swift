@@ -13,7 +13,7 @@ class NewsViewModel: ObservableObject {
     @Published var articles: [ArticleDetail] = []
     @Published var isLoading: Bool = false
     @Published var errorMessage: String?
-
+    @Published var selectedItemURL: String?
     private let newsSearchRequest = NewsSearchRequest()
 
     func fetchNews(for searchPath: String) {
