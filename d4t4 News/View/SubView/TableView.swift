@@ -59,8 +59,6 @@ struct TableView: UIViewControllerRepresentable {
             viewModel.selectedItemURL = url
             print(url)
             navigate()
-            // If you need to save the entire ArticleDetail object instead:
-            // viewModel.selectedArticle = viewModel.articles.first { $0.url == url }
         }
     }
 }

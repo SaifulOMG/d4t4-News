@@ -23,7 +23,7 @@ class NewsViewModel: ObservableObject {
         Task {
             do {
                 let fetchedArticles = try await newsSearchRequest.searchNews(searchPath: searchPath)
-//                print(fetchedArticles)
+
                 if fetchedArticles.status == NewsApiStatus.error.identifier {
                     guard let message = fetchedArticles.message else {
                         return

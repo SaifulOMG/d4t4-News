@@ -29,7 +29,6 @@ class Security {
 
         SecItemDelete(query as CFDictionary)
 
-        // Add Api Key
         let status = SecItemAdd(query as CFDictionary, nil)
         guard status == errSecSuccess else {
             throw KeychainError.itemAdditionFailed(status: status)

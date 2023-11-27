@@ -24,8 +24,9 @@ class CustomTableViewCell: UITableViewCell {
     }
 
     private func setupLayout() {
-        // Configure titleLabel
-        titleLabel.numberOfLines = 5 // Adjust as needed
+   
+        titleLabel.numberOfLines = 5 
+        
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(titleLabel)
 
@@ -57,7 +58,8 @@ class CustomTableViewCell: UITableViewCell {
             buttonsStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
             buttonsStackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
             buttonsStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10),
-            buttonsStackView.widthAnchor.constraint(equalToConstant: 100)
+            buttonsStackView.widthAnchor.constraint(equalToConstant: 100),
+            buttonsStackView.heightAnchor.constraint(equalToConstant: 100)
         ])
     }
 
