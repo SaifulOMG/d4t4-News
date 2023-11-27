@@ -7,6 +7,7 @@
 
 import Foundation
 
+//code to handle button press on tableview
 protocol CustomTableViewCellDelegate: AnyObject {
     func didTapSpeechButton(withText text: String)
     func didTapViewButton(withURL url: String)

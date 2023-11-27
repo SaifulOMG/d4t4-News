@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-
+//Custom Search bar
 struct SearchBar: View {
     @Binding var searchText: String
     var action: () -> ()

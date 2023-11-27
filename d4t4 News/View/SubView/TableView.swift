@@ -30,6 +30,7 @@ struct TableView: UIViewControllerRepresentable {
     }
 
     class TableViewController: NSObject, UITableViewDelegate, UITableViewDataSource, CustomTableViewCellDelegate {
+        //Implemented Protocol
         var parent: TableView
         var viewModel: NewsViewModel
         var navigate: () -> ()
@@ -51,6 +52,7 @@ struct TableView: UIViewControllerRepresentable {
             return cell
         }
 
+        //Delegate Functions
         func didTapSpeechButton(withText text: String) {
             viewModel.speakText(text)
         }

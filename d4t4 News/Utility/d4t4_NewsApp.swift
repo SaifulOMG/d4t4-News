@@ -11,7 +11,7 @@ import SwiftUI
 struct d4t4_NewsApp: App {
     init() {
         do {
-            try Security().saveApiKeyToKeychain()
+            try Security().saveApiKeyToKeychain() //securely save api key
         } catch {
             print("Failed to save API key: \(error)")
         }

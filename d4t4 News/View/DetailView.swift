@@ -14,7 +14,7 @@ struct DetailView: View {
         if let urlString = newsViewModel.selectedItemURL {
             ZStack {
                 Color.blue
-                
+                //Show Web Content
                 WebView(urlString: urlString)
                     .ignoresSafeArea()
             }

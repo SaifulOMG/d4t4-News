@@ -12,6 +12,7 @@ enum Routes {
     case detailView
 }
 
+//Manage navigation route
 struct RouteManager: View {
     @State private var navPaths = [Routes]()
     

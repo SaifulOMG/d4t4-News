@@ -20,6 +20,7 @@ class NewsViewModel: ObservableObject {
         isLoading = true
         errorMessage = nil
 
+        //checking for errors when fetching. API may return errors
         Task {
             do {
                 let fetchedArticles = try await newsSearchRequest.searchNews(searchPath: searchPath)

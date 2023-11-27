@@ -16,7 +16,7 @@ enum NetworkError: Error {
 }
 
 class NetworkRequest {
-    //MARK:- GET
+    //Get Request
     func getData<T: Codable>(searchPath: String, expectedReturnType: T.Type) async throws -> T {
         do {
             let apiKey = try Security().getApiKeyToKeychain()

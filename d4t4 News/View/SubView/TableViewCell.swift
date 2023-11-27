@@ -30,12 +30,12 @@ class CustomTableViewCell: UITableViewCell {
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(titleLabel)
 
-        // Configure speechButton
+        // SpeechButton
         speechButton.setTitle("Speech", for: .normal)
         speechButton.addTarget(self, action: #selector(speakTitle), for: .touchUpInside)
         configureButton(speechButton, backgroundColor: .systemBlue, titleColor: .white)
 
-        // Configure viewArticleButton
+        // ViewArticleButton
         viewArticleButton.setTitle("View", for: .normal)
         viewArticleButton.addTarget(self, action: #selector(viewArticle), for: .touchUpInside)
         configureButton(viewArticleButton, backgroundColor: .systemIndigo, titleColor: .white)
@@ -48,7 +48,7 @@ class CustomTableViewCell: UITableViewCell {
         buttonsStackView.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(buttonsStackView)
 
-        // Set up AutoLayout constraints
+        // Layout for cell
         NSLayoutConstraint.activate([
             titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
             titleLabel.trailingAnchor.constraint(equalTo: buttonsStackView.leadingAnchor, constant: -10),

@@ -29,6 +29,7 @@ struct SearchView: View {
                         .fill(.white)
                         .overlay(content: {
                             TableView(navigate: {
+                                //Navigate to DetailView
                                 navPaths.append(.detailView)
                             })
                                 .padding([.trailing, .top, .bottom], 4)
@@ -42,6 +43,7 @@ struct SearchView: View {
             }
 
             if newsViewModel.isLoading {
+                //Progress when loading data
                 ProgressView("Loading...")
                     .progressViewStyle(.circular)
                     .scaleEffect(1.5)

@@ -16,11 +16,13 @@ enum KeychainError: Error {
 }
 
 class Security {
-    
+    //Keychain code
     func saveApiKeyToKeychain() throws {
         let key = "apiKey"
         let value = "58e3cf8e35664428a5b127972cb92e9b"
         //710119f4520a4c25b4ab12e46322e7db
+        //58e3cf8e35664428a5b127972cb92e9b
+        //Had to create API key since the original key isn't working
         let data = Data(value.utf8)
 
         let query: [String: Any] = [kSecClass as String: kSecClassGenericPassword,
